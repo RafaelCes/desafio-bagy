@@ -1,0 +1,26 @@
+{
+  "name": "desafio-bagy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelCes/desafio-bagy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafaelCes/desafio-bagy/issues"
+  },
+  "homepage": "https://github.com/RafaelCes/desafio-bagy#readme",
+  "dependencies": {
+    "eslint-config-trybe-backend": "^1.0.4",
+    "express": "^4.17.2",
+    "sequelize": "^7.0.0-alpha.4",
+    "sqlite3": "^5.0.2"
+  }
+}
