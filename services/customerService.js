@@ -53,15 +53,18 @@ const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, 
 };
 
 const deleteCustomer = async (id) => {
-  const customer = await Customer.findOne({
-    where: { id },
-  });
+  const customer = await Customer.findOne(
+    {where: { id }},
+    {include: [{ all: true }],}
+  );
 
   if (!customer) throw new Error('INEXISTENT_POST');
 
   await Customer.destroy({
     where: { id },
   });
+
+  return customer;
 };
 
 module.exports = {

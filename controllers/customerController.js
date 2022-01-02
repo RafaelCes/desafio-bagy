@@ -65,9 +65,9 @@ const updateCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   try {
     const { id } = req.params;
-    await customerService.deleteCustomer(id);
+    const customer = await customerService.deleteCustomer(id);
 
-    res.status(204).send('customar excluded');
+    res.status(204).json(customer);
   } catch (error) {
     console.log(error);
   }

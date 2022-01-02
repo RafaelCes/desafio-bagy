@@ -22,6 +22,23 @@ const validateCustomer = (body) => {
   }
 };
 
+const validateProduct = (body) => {
+  const { error } = joi.object({
+    name: joi.string().required(),
+    image: joi.string().required(),
+    description: joi.string().required(),
+    weight: joi.number().min(0).precision(1).required(),
+    price: joi.number().min(0).precision(2).required(),
+    stock: joi.number().min(0).required(),
+}).validate(body);
+
+if (error) {
+  console.log(error.details[0].message);
+  throw new Error('INVALID_FIELDS');
+}
+}
+
 module.exports = {
   validateCustomer,
+  validateProduct,
 };
