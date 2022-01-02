@@ -1,5 +1,5 @@
 const Customer = (sequelize, DataTypes) => {
-  const Customer = sequelize.define("Customer", {
+  const Customer = sequelize.define('Customer', {
     fullName: DataTypes.STRING,
     email: DataTypes.STRING,
     cpf: DataTypes.STRING,

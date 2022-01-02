@@ -1,12 +1,12 @@
 const Address = (sequelize, DataTypes) => {
-  const Address = sequelize.define("Address", {
+  const Address = sequelize.define('Address', {
     street: DataTypes.STRING,
     district: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING,
     cep: DataTypes.STRING,
-    number:DataTypes.INTEGER,
+    number: DataTypes.INTEGER,
   },
   {
     timestamps: false,
