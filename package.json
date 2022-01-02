@@ -24,6 +24,7 @@
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "sequelize": "^7.0.0-alpha.4",
+    "sequelize-cli": "^6.3.0",
     "sqlite3": "^5.0.2"
   }
 }
