@@ -2,9 +2,12 @@
   "name": "desafio-bagy",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .",
+    "dev": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "repository": {
     "type": "git",
@@ -20,7 +23,10 @@
   "dependencies": {
     "eslint-config-trybe-backend": "^1.0.4",
     "express": "^4.17.2",
+    "joi": "^17.5.0",
+    "nodemon": "^2.0.15",
     "sequelize": "^7.0.0-alpha.4",
+    "sequelize-cli": "^6.3.0",
     "sqlite3": "^5.0.2"
   }
 }
