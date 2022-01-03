@@ -16,7 +16,7 @@ const createCustomer = async ({ fullName, email, cpf, birthDate, address }, t) =
 
 const getAllCustomers = async () => {
   const response = await Customer.findAll({
-    include: [{ all: true }],
+    include: [{ model: Address, as: 'address' }],
   });
 
   return response;
@@ -35,7 +35,7 @@ const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, 
     where: { id },
   });
 
-  if (!customer) throw new Error('INEXISTENT_POST');
+  if (!customer) throw new Error('CUSTOMER_NOT_FOUND');
 
   await Customer.update(
     { fullName, email, cpf, birthDate },
@@ -53,15 +53,18 @@ const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, 
 };
 
 const deleteCustomer = async (id) => {
-  const customer = await Customer.findOne({
-    where: { id },
-  });
+  const customer = await Customer.findOne(
+    { where: { id } },
+    { include: [{ all: true }] },
+  );
 
-  if (!customer) throw new Error('INEXISTENT_POST');
+  if (!customer) throw new Error('CUSTOMER_NOT_FOUND');
 
   await Customer.destroy({
     where: { id },
   });
+
+  return customer;
 };
 
 module.exports = {
