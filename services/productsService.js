@@ -1,54 +1,54 @@
-const {Product} = require("../models");
+const { Product } = require('../models');
 
-const createProduct = async(body) => {
+const createProduct = async (body) => {
 const response = await Product.create({ ...body });
 
 return response;
-}
+};
 
-const getAllProducts = async() => {
+const getAllProducts = async () => {
   const response = await Product.findAll({});
   return response;
-}
+};
 
-const getProductById = async(id) => {
+const getProductById = async (id) => {
   const product = await Product.findOne({
-    where: { id }
+    where: { id },
   });
 
-  if(!product) throw new Error('PRODUCT_NOT_FOUND');
+  if (!product) throw new Error('PRODUCT_NOT_FOUND');
 
   return product;
-}
+};
 
-const updateProduct = async(body, id) => {
+const updateProduct = async (body, id) => {
   const product = await Product.findOne({
-    where: { id }
+    where: { id },
   });
 
-  if(!product) throw new Error('PRODUCT_NOT_FOUND');
+  if (!product) throw new Error('PRODUCT_NOT_FOUND');
 
   await Product.update(
-    {...body},
-   { where: { id }}
+    { ...body },
+   { where: { id } },
   );
 
-  return {id: product.id, ...body};
-}
+  return { id: product.id, ...body };
+};
 
-const deleteProduct = async(id) => {
+const deleteProduct = async (id) => {
   const product = await Product.findOne({
-    where: { id }
+    where: { id },
   });
 
-  if(!product) throw new Error('PRODUCT_NOT_FOUND');
+  if (!product) throw new Error('PRODUCT_NOT_FOUND');
 
   await Product.destroy(
-   { where: { id }}
+   { where: { id } },
   );
 
   return product;
-}
+};
 
 module.exports = {
   createProduct,
@@ -56,4 +56,4 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
-}
+};

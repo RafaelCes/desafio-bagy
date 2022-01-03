@@ -36,7 +36,7 @@ if (error) {
   console.log(error.details[0].message);
   throw new Error('INVALID_FIELDS');
 }
-}
+};
 
 module.exports = {
   validateCustomer,

@@ -11,6 +11,11 @@ const Product = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  Product.associate = (models) => {
+    Product.belongsTo(models.Order,
+      { foreignKey: 'productID', as: 'product' });
+  };
+
   return Product;
 };
 

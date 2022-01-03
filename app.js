@@ -1,6 +1,8 @@
 const express = require('express');
 const { createCustomer, getAllCustomers, getCustomerById, updateCustomer, deleteCustomer,
 } = require('./controllers/customerController');
+const { createOrder, getAllOrders, getOrderByCustomer, updateOrder, deleteOrder,
+} = require('./controllers/orderController');
 const { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct,
 } = require('./controllers/productController');
 
@@ -19,5 +21,11 @@ app.get('/products', getAllProducts);
 app.get('/products/:id', getProductById);
 app.put('/products/:id', updateProduct);
 app.delete('/products/:id', deleteProduct);
+
+app.post('/orders', createOrder);
+app.get('/orders', getAllOrders);
+app.get('/orders/:id', getOrderByCustomer);
+app.put('/orders/:id', updateOrder);
+app.delete('/orders/:id', deleteOrder);
 
 module.exports = app;
