@@ -20,22 +20,22 @@ const createOrder = async (req, res) => {
   }
 };
 
-const getAllOrders = async (_req, res) => {
+const getAllOrders = async () => {
   try {
     const orders = await orderService.getAllOrders();
 
-    res.status(200).json(orders);
+    return orders;
   } catch (error) {
     console.log(error);
   }
 };
 
-const getOrderByCustomer = async (req, res) => {
+const getOrderByCustomer = async (customerId) => {
   try {
-    const { id } = req.params;
-    const orders = await orderService.getOrderByCustomer(id);
+    
+    const orders = await orderService.getOrderByCustomer(customerId);
 
-    res.status(200).json(orders);
+    return orders;
   } catch (error) {
     console.log(error);
   }

@@ -13,8 +13,8 @@ const Customer = (sequelize, DataTypes) => {
     Customer.hasOne(models.Address,
       { foreignKey: 'customerId', as: 'address' });
 
-    Customer.belongsTo(models.Order,
-      { foreignKey: 'customerId', as: 'customer' });
+    // Customer.belongsTo(models.Order,
+    //   { foreignKey: 'customerId', as: 'customer' });
   };
 
   

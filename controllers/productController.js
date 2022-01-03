@@ -15,23 +15,22 @@ const createProduct = async (req, res) => {
   }
 };
 
-const getAllProducts = async (_req, res) => {
+const getAllProducts = async () => {
   try {
     const products = await productService.getAllProducts();
 
-    res.status(200).json(products);
+    return products;
   } catch (error) {
     console.log(error);
   }
 };
 
-const getProductById = async (req, res) => {
+const getProductById = async (id) => {
   try {
-    const { id } = req.params;
 
     const product = await productService.getProductById(id);
 
-    res.status(200).json(product);
+    return product;
   } catch (error) {
     console.log(error);
   }

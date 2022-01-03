@@ -23,21 +23,22 @@ const createCustomer = async (req, res) => {
   }
 };
 
-const getAllCustomers = async (_req, res) => {
+const getAllCustomers = async () => {
   try {
+
     const customers = await customerService.getAllCustomers();
-    res.status(200).json(customers);
+    return customers;
+
   } catch (error) {
     console.log(error);
   }
 };
 
-const getCustomerById = async (req, res) => {
+const getCustomerById = async (id) => {
   try {
-    const { id } = req.params;
-    const costumer = await customerService.getCustomerById(id);
+    const customer = await customerService.getCustomerById(id);
 
-    res.status(200).json(costumer);
+    return customer;
   } catch (error) {
     console.log(error);
   }
