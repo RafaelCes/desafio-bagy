@@ -26,11 +26,14 @@ const getAllCustomers = async () => {
 };
 
 const getCustomerById = async (id) => {
-  const response = await Customer.findOne({
+  const customer = await Customer.findOne({
     where: { id },
     include: [{ all: true }],
   });
-  return response;
+
+  if (!customer.length) throw new Error('CUSTOMER_NOT_FOUND');
+
+  return customer;
 };
 
 const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, t) => {

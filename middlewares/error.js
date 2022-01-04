@@ -9,11 +9,9 @@ const errorHandler = (err) => {
     INSUFICIENT_STOCK: { status: 409, message: 'Product out of stock' },
     ER_NO_REFERENCED_ROW_2: { status: 400, message: '"categoryIds" not found' },
   };
-  console.log(err);
   let response;
   if (err.parent) response = decoder[err.parent.code];
   else response = decoder[err.message];
-  console.log(response);
   return response
 };
 
