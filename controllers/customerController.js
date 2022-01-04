@@ -62,7 +62,7 @@ const deleteCustomer = async (id) => {
   try {
     
     const customer = await customerService.deleteCustomer(id);
-    console.log(customer.dataValues, 'controller');
+
     return customer;
   } catch (error) {
     console.log(error);

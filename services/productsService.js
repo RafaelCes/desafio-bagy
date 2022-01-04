@@ -1,7 +1,7 @@
 const { Product } = require('../models');
 
-const createProduct = async (body) => {
-const response = await Product.create({ ...body });
+const createProduct = async (input) => {
+const response = await Product.create({ ...input });
 
 return response;
 };
@@ -21,7 +21,7 @@ const getProductById = async (id) => {
   return product;
 };
 
-const updateProduct = async (body, id) => {
+const updateProduct = async (id, input) => {
   const product = await Product.findOne({
     where: { id },
   });
@@ -29,11 +29,11 @@ const updateProduct = async (body, id) => {
   if (!product) throw new Error('PRODUCT_NOT_FOUND');
 
   await Product.update(
-    { ...body },
+    { ...input },
    { where: { id } },
   );
 
-  return { id: product.id, ...body };
+  return { id: product.id, ...input };
 };
 
 const deleteProduct = async (id) => {

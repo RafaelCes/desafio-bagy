@@ -67,7 +67,7 @@ const deleteCustomer = async (id) => {
   await Customer.destroy({
     where: { id },
   });
-  console.log(customer.dataValues, 'service');
+
   return customer.dataValues;
 };
 

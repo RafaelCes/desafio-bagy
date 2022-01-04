@@ -1,15 +1,14 @@
 const { validateProduct } = require('../middlewares/validations');
 const productService = require('../services/productsService');
 
-const createProduct = async (req, res) => {
+const createProduct = async (input) => {
   try {
-    const { body } = req;
 
-    validateProduct(body);
+    validateProduct(input);
 
-    const product = await productService.createProduct(body);
+    const product = await productService.createProduct(input);
 
-    res.status(201).json(product);
+    return product;
   } catch (error) {
     console.log(error);
   }
@@ -35,28 +34,27 @@ const getProductById = async (id) => {
   }
 };
 
-const updateProduct = async (req, res) => {
+const updateProduct = async (id, input) => {
   try {
-    const { id } = req.params;
-    const { body } = req;
+    
 
-    validateProduct(body);
+    validateProduct(input);
 
-    const product = await productService.updateProduct(body, id);
+    const product = await productService.updateProduct(id, input);
 
-    res.status(201).json(product);
+    return product;
   } catch (error) {
     console.log(error);
   }
 };
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (id) => {
   try {
-    const { id } = req.params;
+    
 
     const product = await productService.deleteProduct(id);
 
-    res.status(201).json(product);
+    return product;
   } catch (error) {
     console.log(error);
   }
