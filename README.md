@@ -45,17 +45,28 @@ lista completa de dependências:
     "sqlite3": "^5.0.2"
     
 para rodar o projeto clone o repositório em uma pasta em sua maquina
-  git clone https://github.com/RafaelCes/desafio-bagy.git
+
+    git clone https://github.com/RafaelCes/desafio-bagy.git
+
  em seguida acesse essa pasta e instale as dependências
-  npm install
+ 
+    npm install
+    
  configure o banco de dados com os valores iniciais
-  npx sequelize db:migrate:undo:all
-  npx sequelize db:migrate
-  npx sequelize db:seed:all
+ 
+      npx sequelize db:migrate:undo:all
+      npx sequelize db:migrate
+      npx sequelize db:seed:all
+  
  inicialize o servidor
-  npm start
+ 
+    npm start
+  
  Acesse pelo browser a página 
+ 
   http://localhost:3000/graphql
+  
+  
  aqui você pode executar as querys e mutations definidas (a página possui uma documentação interativa)
 
 Querys
