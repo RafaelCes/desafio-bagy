@@ -1,75 +1,70 @@
 const Sequelize = require('sequelize');
 const config = require('../config/config.json');
+const errorHandler = require('../middlewares/error');
 const { validateCustomer } = require('../middlewares/validations');
 
 const customerService = require('../services/customerService');
 
 const sequelize = new Sequelize(config.development);
 
-const createCustomer = async (req, res) => {
+const createCustomer = async (input) => {
   const t = await sequelize.transaction();
   try {
-    const { body } = req;
-    validateCustomer(body);
+    validateCustomer(input);
 
-    const response = await customerService.createCustomer(body, t);
+    const response = await customerService.createCustomer(input, t);
 
     await t.commit();
 
-    res.status(201).json(response);
+    return response;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
-const getAllCustomers = async (_req, res) => {
+const getAllCustomers = async () => {
   try {
     const customers = await customerService.getAllCustomers();
-    res.status(200).json(customers);
+    return customers;
   } catch (error) {
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
-const getCustomerById = async (req, res) => {
+const getCustomerById = async (id) => {
   try {
-    const { id } = req.params;
-    const costumer = await customerService.getCustomerById(id);
+    const customer = await customerService.getCustomerById(id);
 
-    res.status(200).json(costumer);
+    return customer;
   } catch (error) {
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
-const updateCustomer = async (req, res) => {
+const updateCustomer = async (id, input) => {
   const t = await sequelize.transaction();
   try {
-    const { body } = req;
-    const { id } = req.params;
+    validateCustomer(input);
 
-    validateCustomer(body);
-
-    const costumer = await customerService.updateCustomer(id, body, t);
+    const costumer = await customerService.updateCustomer(id, input, t);
 
     await t.commit();
 
-    res.status(201).json(costumer);
+    return costumer;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
-const deleteCustomer = async (req, res) => {
+const deleteCustomer = async (id) => {
   try {
-    const { id } = req.params;
     const customer = await customerService.deleteCustomer(id);
 
-    res.status(204).json(customer);
+    return customer;
   } catch (error) {
-    console.log(error);
+   return errorHandler(error);
   }
 };
 

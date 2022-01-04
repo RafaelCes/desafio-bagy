@@ -1,66 +1,58 @@
+const errorHandler = require('../middlewares/error');
 const { validateProduct } = require('../middlewares/validations');
 const productService = require('../services/productsService');
 
-const createProduct = async (req, res) => {
+const createProduct = async (input) => {
   try {
-    const { body } = req;
+    validateProduct(input);
 
-    validateProduct(body);
+    const product = await productService.createProduct(input);
 
-    const product = await productService.createProduct(body);
-
-    res.status(201).json(product);
+    return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const getAllProducts = async (_req, res) => {
+const getAllProducts = async () => {
   try {
     const products = await productService.getAllProducts();
 
-    res.status(200).json(products);
+    return products;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const getProductById = async (req, res) => {
+const getProductById = async (id) => {
   try {
-    const { id } = req.params;
-
     const product = await productService.getProductById(id);
 
-    res.status(200).json(product);
+    return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const updateProduct = async (req, res) => {
+const updateProduct = async (id, input) => {
   try {
-    const { id } = req.params;
-    const { body } = req;
+    validateProduct(input);
 
-    validateProduct(body);
+    const product = await productService.updateProduct(id, input);
 
-    const product = await productService.updateProduct(body, id);
-
-    res.status(201).json(product);
+    return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (id) => {
   try {
-    const { id } = req.params;
-
     const product = await productService.deleteProduct(id);
 
-    res.status(201).json(product);
+    return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 

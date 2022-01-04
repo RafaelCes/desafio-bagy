@@ -1,73 +1,67 @@
 const Sequelize = require('sequelize');
 const config = require('../config/config.json');
+const errorHandler = require('../middlewares/error');
 
 const orderService = require('../services/orderService');
 
 const sequelize = new Sequelize(config.development);
 
-const createOrder = async (req, res) => {
+const createOrder = async (input) => {
   const t = await sequelize.transaction();
   try {
-    const { body } = req;
-
-    const order = await orderService.createOrder(body, t);
+    const order = await orderService.createOrder(input, t);
 
     await t.commit();
-    res.status(201).json(order);
+    return order;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const getAllOrders = async (_req, res) => {
+const getAllOrders = async () => {
   try {
     const orders = await orderService.getAllOrders();
 
-    res.status(200).json(orders);
+    return orders;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const getOrderByCustomer = async (req, res) => {
+const getOrderByCustomer = async (customerId) => {
   try {
-    const { id } = req.params;
-    const orders = await orderService.getOrderByCustomer(id);
+    const orders = await orderService.getOrderByCustomer(customerId);
 
-    res.status(200).json(orders);
+    return orders;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const updateOrder = async (req, res) => {
+const updateOrder = async (id, status, installments) => {
   const t = await sequelize.transaction();
   try {
-    const { body } = req;
-    const { id } = req.params;
-
-    const order = await orderService.updateOrder(id, body, t);
+    const order = await orderService.updateOrder(id, status, installments, t);
 
     await t.commit();
-    res.status(201).json(order);
+    return order;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
-const deleteOrder = async (req, res) => {
+const deleteOrder = async (id) => {
   const t = await sequelize.transaction();
   try {
-    const { id } = req.params;
     const order = await orderService.deleteOrder(id, t);
 
     await t.commit();
-    res.status(201).json(order);
+    return order;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
