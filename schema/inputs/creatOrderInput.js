@@ -10,7 +10,6 @@ const CreateOrderInputType = new GraphQLInputObjectType({
   description: 'Input payload for creating a Order',
   fields: () => ({
     productId: { type: GraphQLNonNull(GraphQLInt) },
-    createdAt: { type: GraphQLNonNull(GraphQLString) },
     installments: { type: GraphQLNonNull(GraphQLInt) },
     status: { type: GraphQLNonNull(GraphQLString) },
     customerId: { type: GraphQLNonNull(GraphQLInt) },

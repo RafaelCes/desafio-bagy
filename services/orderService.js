@@ -1,3 +1,4 @@
+const sendEmail = require('../middlewares/sendEmail');
 const { Customer, Product, Order } = require('../models');
 
 const createOrder = async ({ productId, customerId, installments, status, quantity }, t) => {
@@ -22,7 +23,7 @@ const createOrder = async ({ productId, customerId, installments, status, quanti
     { transaction: t },
   );
 
-  // sendEmail(customer.email);
+  sendEmail(customer.email, {...response.dataValues, ...product.dataValues});
 
   return response;
 };
