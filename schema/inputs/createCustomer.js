@@ -4,19 +4,6 @@ const {
   GraphQLNonNull,
   GraphQLInt,
 } = require('graphql');
-const AddressType = require('../typeDefs/addressType');
-
-const CreateCustomerInputType = new GraphQLInputObjectType({
-  name: 'CreateCustomerInput',
-  description: 'Input payload for creating a customer',
-  fields: () => ({
-    fullName: { type: GraphQLNonNull(GraphQLString) },
-    email: { type: GraphQLNonNull(GraphQLString) },
-    cpf: { type: GraphQLNonNull(GraphQLString) },
-    birthDate: { type: GraphQLNonNull(GraphQLString) },
-    address: { type: AddressInputType },
-  }),
-});
 
 const AddressInputType = new GraphQLInputObjectType({
   name: 'AddressInput',
@@ -30,6 +17,18 @@ const AddressInputType = new GraphQLInputObjectType({
     cep: { type: GraphQLNonNull(GraphQLString) },
     number: { type: GraphQLNonNull(GraphQLInt) },
     
+  }),
+});
+
+const CreateCustomerInputType = new GraphQLInputObjectType({
+  name: 'CreateCustomerInput',
+  description: 'Input payload for creating a customer',
+  fields: () => ({
+    fullName: { type: GraphQLNonNull(GraphQLString) },
+    email: { type: GraphQLNonNull(GraphQLString) },
+    cpf: { type: GraphQLNonNull(GraphQLString) },
+    birthDate: { type: GraphQLNonNull(GraphQLString) },
+    address: { type: AddressInputType },
   }),
 });
 

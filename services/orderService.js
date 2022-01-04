@@ -23,7 +23,7 @@ const createOrder = async ({ productId, customerId, installments, status, quanti
     { transaction: t },
   );
 
-  sendEmail(customer.email, {...response.dataValues, ...product.dataValues});
+  sendEmail(customer.email, { ...response.dataValues, ...product.dataValues });
 
   return response;
 };

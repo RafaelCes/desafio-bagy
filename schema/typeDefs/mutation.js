@@ -5,9 +5,21 @@ const {
   GraphQLNonNull,
 } = require('graphql');
 
-const { createCustomer, updateCustomer, deleteCustomer } = require('../../controllers/customerController');
-const { createOrder, deleteOrder, updateOrder } = require('../../controllers/orderController');
-const { createProduct, updateProduct, deleteProduct } = require('../../controllers/productController');
+const { 
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
+} = require('../../controllers/customerController');
+const { 
+  createOrder,
+  deleteOrder,
+  updateOrder,
+} = require('../../controllers/orderController');
+const { 
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} = require('../../controllers/productController');
 
 const CreateCustomerInputType = require('../inputs/createCustomer');
 const CreateProductInputType = require('../inputs/createProductInput');
@@ -17,7 +29,7 @@ const CustomerType = require('./customerType');
 const OrderType = require('./orderType');
 const ProductType = require('./productType');
 
-//separar em 3 arquivos futuramente
+// separar em 3 arquivos futuramente
 
 const RootMutationType = new GraphQLObjectType({
   name: 'Mutation',
