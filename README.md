@@ -60,54 +60,54 @@ para rodar o projeto clone o repositório em uma pasta em sua maquina
 
 Querys
 
-customer(id: Int): Customer
-A Single customer
+    customer(id: Int): Customer
+    A Single customer
 
-customers: [Customer]
-List of All customers
+    customers: [Customer]
+    List of All customers
 
-product(id: Int): Product
-A Single Product
+    product(id: Int): Product
+    A Single Product
 
-prodcuts: [Product]
-List of All Products
+    prodcuts: [Product]
+    List of All Products
 
-orders: [Order]
-List of All orders
+    orders: [Order]
+    List of All orders
 
-orderHistory(customerId: Int): [Order]
-List of all orders by a customer
+    orderHistory(customerId: Int): [Order]
+    List of all orders by a customer
 
 Mutations 
 
-createCustomer(input: CreateCustomerInput!): Customer
-Add a new customer
+    createCustomer(input: CreateCustomerInput!): Customer
+    Add a new customer
 
-updateCustomer(id: Int!input: CreateCustomerInput!): Customer
-Update a customer
+    updateCustomer(id: Int!input: CreateCustomerInput!): Customer
+    Update a customer
 
-deleteCustomer(id: Int!): Customer
-Delete a customer
+    deleteCustomer(id: Int!): Customer
+    Delete a customer
 
-createProduct(input: CreateProductInput!): Product
-Add a new product
+    createProduct(input: CreateProductInput!): Product
+    Add a new product
 
-updateProduct(id: Int!input: CreateProductInput!): Product
-Update a product
+    updateProduct(id: Int!input: CreateProductInput!): Product
+    Update a product
 
-deleteProduct(id: Int!): Product
-Delete a product
+    deleteProduct(id: Int!): Product
+    Delete a product
 
-createOrder(input: CreateOrderInput!): Order
-Add a new order
+    createOrder(input: CreateOrderInput!): Order
+    Add a new order
 
-updateOrder(
-id: Int!
-installments: Int!
-status: String!
-): Order
-Update a order
+    updateOrder(
+    id: Int!
+    installments: Int!
+    status: String!
+    ): Order
+    Update a order
 
-deleteOrder(id: Int!): Order
-Delete a order
+    deleteOrder(id: Int!): Order
+    Delete a order
    
