@@ -16,7 +16,7 @@ const getProductById = async (id) => {
     where: { id },
   });
 
-  if (!product) throw new Error('PRODUCT_NOT_FOUND');
+  if (!product.length) throw new Error('PRODUCT_NOT_FOUND');
 
   return product;
 };
