@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true
+  graphiql: true,
 }));
 
 // app.post('/users', createCustomer);

@@ -10,8 +10,11 @@ const createCustomer = async ({ fullName, email, cpf, birthDate, address }, t) =
     { customerId: newCustomer.id, ...address },
     { transaction: t },
   );
-
-  return { newCustomer, newAddress };
+    const response = {
+      ... newCustomer.dataValues,
+      address: { ...newAddress.dataValues},
+    }
+  return response;
 };
 
 const getAllCustomers = async () => {
@@ -33,6 +36,7 @@ const getCustomerById = async (id) => {
 const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, t) => {
   const customer = await Customer.findOne({
     where: { id },
+    include: [{ all: true }],
   });
 
   if (!customer) throw new Error('CUSTOMER_NOT_FOUND');
@@ -48,23 +52,23 @@ const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, 
     { where: { customerId: id } },
     { transaction: t },
   );
-    const response = { fullName, email, cpf, birthDate, address };
+    const response = {id, fullName, email, cpf, birthDate, address };
   return response;
 };
 
 const deleteCustomer = async (id) => {
-  const customer = await Customer.findOne(
-    { where: { id } },
-    { include: [{ all: true }] },
-  );
+  const customer = await Customer.findOne({
+    where: { id },
+    include: [{ all: true }],
+  });
 
   if (!customer) throw new Error('CUSTOMER_NOT_FOUND');
 
   await Customer.destroy({
     where: { id },
   });
-
-  return customer;
+  console.log(customer.dataValues, 'service');
+  return customer.dataValues;
 };
 
 module.exports = {

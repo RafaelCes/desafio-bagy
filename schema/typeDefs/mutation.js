@@ -1,53 +1,57 @@
 const {
   GraphQLObjectType,
-  GraphQLString,
-  GraphQLList,
   GraphQLInt,
-  GraphQLNonNull
-} = require('graphql')
+  GraphQLNonNull,
+} = require('graphql');
+const { createCustomer, updateCustomer, deleteCustomer } = require('../../controllers/customerController');
+const CreateCustomerInputType = require('../inputs/createCustomer');
 
-const CustomerType = require("./customerType");
-
+const CustomerType = require('./customerType');
 
 const RootMutationType = new GraphQLObjectType({
   name: 'Mutation',
   description: 'Root Mutation',
   fields: () => ({
-    addClient: {
+    createCustomer: {
       type: CustomerType,
       description: 'Add a new customer',
       args: {
-        name: { type: GraphQLNonNull(GraphQLString) },
-        email: { type: GraphQLNonNull(GraphQLString) },
-        cpf: { type: GraphQLNonNull(GraphQLString) },
-        birthDate: { type: GraphQLNonNull(GraphQLString) },
-        // street: { type: GraphQLNonNull(GraphQLString) },
-        // district: { type: GraphQLNonNull(GraphQLString) },
-        // city: { type: GraphQLNonNull(GraphQLString) },
-        // state: { type: GraphQLNonNull(GraphQLString) },
-        // country: { type: GraphQLNonNull(GraphQLString) },
-        // cep: { type: GraphQLNonNull(GraphQLString) },
-        // number: { type: GraphQLNonNull(GraphQLInt) },
+        input: {
+            type: GraphQLNonNull(CreateCustomerInputType),
+        },
       },
-      resolve: (parent, args) => {
-        const client = { id: clientData.length + 1, ...args }
-        clientData.push(client)
-        return client
-      }
+      resolve: async (parent, args) => {
+        const customer = await createCustomer(args.input)
+        return customer
+      },
+  },
+    updateCustomer: {
+      type: CustomerType,
+      description: 'Update a  customer',
+      args: {
+        id: { type: GraphQLNonNull(GraphQLInt) },
+        input: {
+            type: GraphQLNonNull(CreateCustomerInputType),
+        },
+      },
+      resolve: async (parent, args) => {
+        const customer = await updateCustomer(args.id, args.input)
+        return customer
+      },
     },
-  //   addAuthor: {
-  //     type: AuthorType,
-  //     description: 'Add an author',
-  //     args: {
-  //       name: { type: GraphQLNonNull(GraphQLString) }
-  //     },
-  //     resolve: (parent, args) => {
-  //       const author = { id: authors.length + 1, name: args.name }
-  //       authors.push(author)
-  //       return author
-  //     }
-  //   }
-  })
-})
+    deleteCustomer: {
+      type: CustomerType,
+      description: 'Delete a  customer',
+      args: {
+        id: { type: GraphQLNonNull(GraphQLInt) },
+      },
+      resolve: async (parent, args) => {
+        const customer = await deleteCustomer(args.id);
+        console.log(customer.dataValues, 'mutation');
+        return customer;
+      },
+    },
+  }),
+});
 
 module.exports = RootMutationType;

@@ -2,15 +2,14 @@ const {
   GraphQLObjectType,
   GraphQLList,
   GraphQLInt,
-} = require('graphql')
+} = require('graphql');
 
 const CustomerType = require('./customerType');
 const ProductType = require('./productType');
 const OrderType = require('./orderType');
-const {getAllCustomers, getCustomerById} = require('../../controllers/customerController');
+const { getAllCustomers, getCustomerById } = require('../../controllers/customerController');
 const { getProductById, getAllProducts } = require('../../controllers/productController');
-const { getAllOrders, getOrderByCustomer } = require('../../controllers/orderController')
-
+const { getAllOrders, getOrderByCustomer } = require('../../controllers/orderController');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'Query',
@@ -20,9 +19,9 @@ const RootQueryType = new GraphQLObjectType({
       type: CustomerType,
       description: 'A Single customer',
       args: {
-        id: { type: GraphQLInt }
+        id: { type: GraphQLInt },
       },
-      resolve:(parent, args) => getCustomerById(args.id),
+      resolve: (parent, args) => getCustomerById(args.id),
     },
 
     customers: {
@@ -35,7 +34,7 @@ const RootQueryType = new GraphQLObjectType({
       type: ProductType,
       description: 'A Single Product',
       args: {
-        id: { type: GraphQLInt }
+        id: { type: GraphQLInt },
       },
       resolve: (parent, args) => getProductById(args.id),
     },

@@ -2,14 +2,13 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLNonNull
-} = require('graphql')
-const ProductType = require('./productType')
+  GraphQLNonNull,
+} = require('graphql');
+const ProductType = require('./productType');
 
 const CustomerType = require('./customerType');
 const { getCustomerById } = require('../../controllers/customerController');
 const { getProductById } = require('../../controllers/productController');
-
 
 const OrderType = new GraphQLObjectType({
   name: 'Order',
@@ -23,15 +22,15 @@ const OrderType = new GraphQLObjectType({
     quantity: { type: GraphQLNonNull(GraphQLInt) },
     product: {
       type: ProductType,
-      resolve: async(parent) => {
+      resolve: async (parent) => {
         const product = await getProductById(parent.productId);
       
         return product;
-      }
+      },
     },
     Customer: {
       type: CustomerType,
-      resolve: async(parent) => {
+      resolve: async (parent) => {
         const customer = await getCustomerById(parent.customerId);
         
         return customer;

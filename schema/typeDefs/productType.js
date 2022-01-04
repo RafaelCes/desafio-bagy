@@ -3,8 +3,8 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLNonNull,
-  GraphQLFloat
-} = require('graphql')
+  GraphQLFloat,
+} = require('graphql');
 
 const ProductType = new GraphQLObjectType({
   name: 'Product',

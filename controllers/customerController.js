@@ -6,17 +6,17 @@ const customerService = require('../services/customerService');
 
 const sequelize = new Sequelize(config.development);
 
-const createCustomer = async (req, res) => {
+const createCustomer = async (input) => {
   const t = await sequelize.transaction();
   try {
-    const { body } = req;
-    validateCustomer(body);
+    
+    validateCustomer(input);
 
-    const response = await customerService.createCustomer(body, t);
+    const response = await customerService.createCustomer(input, t);
 
     await t.commit();
 
-    res.status(201).json(response);
+    return response;
   } catch (error) {
     await t.rollback();
     console.log(error);
@@ -25,10 +25,8 @@ const createCustomer = async (req, res) => {
 
 const getAllCustomers = async () => {
   try {
-
     const customers = await customerService.getAllCustomers();
     return customers;
-
   } catch (error) {
     console.log(error);
   }
@@ -44,31 +42,28 @@ const getCustomerById = async (id) => {
   }
 };
 
-const updateCustomer = async (req, res) => {
+const updateCustomer = async (id, input) => {
   const t = await sequelize.transaction();
   try {
-    const { body } = req;
-    const { id } = req.params;
+    validateCustomer(input);
 
-    validateCustomer(body);
-
-    const costumer = await customerService.updateCustomer(id, body, t);
+    const costumer = await customerService.updateCustomer(id, input, t);
 
     await t.commit();
 
-    res.status(201).json(costumer);
+    return costumer;
   } catch (error) {
     await t.rollback();
     console.log(error);
   }
 };
 
-const deleteCustomer = async (req, res) => {
+const deleteCustomer = async (id) => {
   try {
-    const { id } = req.params;
+    
     const customer = await customerService.deleteCustomer(id);
-
-    res.status(204).json(customer);
+    console.log(customer.dataValues, 'controller');
+    return customer;
   } catch (error) {
     console.log(error);
   }

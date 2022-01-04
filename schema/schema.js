@@ -7,9 +7,7 @@ const RootQueryType = require('./typeDefs/query');
 
 const schema = new GraphQLSchema({
   query: RootQueryType,
-  mutation: RootMutationType
-})
-
-
+  mutation: RootMutationType,
+});
 
 module.exports = schema;

@@ -32,7 +32,6 @@ const getAllOrders = async () => {
 
 const getOrderByCustomer = async (customerId) => {
   try {
-    
     const orders = await orderService.getOrderByCustomer(customerId);
 
     return orders;

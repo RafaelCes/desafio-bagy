@@ -27,7 +27,6 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
   try {
-
     const product = await productService.getProductById(id);
 
     return product;
