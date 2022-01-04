@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const config = require('../config/config.json');
+const errorHandler = require('../middlewares/error');
 
 const orderService = require('../services/orderService');
 
@@ -14,7 +15,7 @@ const createOrder = async (input) => {
     return order;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -24,7 +25,7 @@ const getAllOrders = async () => {
 
     return orders;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -34,7 +35,7 @@ const getOrderByCustomer = async (customerId) => {
 
     return orders;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -47,7 +48,7 @@ const updateOrder = async (id, status, installments) => {
     return order;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -60,7 +61,7 @@ const deleteOrder = async (id) => {
     return order;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+    return errorHandler(error);
   }
 };
 

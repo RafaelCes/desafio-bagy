@@ -17,6 +17,8 @@ const CustomerType = require('./customerType');
 const OrderType = require('./orderType');
 const ProductType = require('./productType');
 
+//separar em 3 arquivos futuramente
+
 const RootMutationType = new GraphQLObjectType({
   name: 'Mutation',
   description: 'Root Mutation',

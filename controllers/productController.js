@@ -1,3 +1,4 @@
+const errorHandler = require('../middlewares/error');
 const { validateProduct } = require('../middlewares/validations');
 const productService = require('../services/productsService');
 
@@ -9,7 +10,7 @@ const createProduct = async (input) => {
 
     return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -19,7 +20,7 @@ const getAllProducts = async () => {
 
     return products;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -29,7 +30,7 @@ const getProductById = async (id) => {
 
     return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -41,7 +42,7 @@ const updateProduct = async (id, input) => {
 
     return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 
@@ -51,7 +52,7 @@ const deleteProduct = async (id) => {
 
     return product;
   } catch (error) {
-    console.log(error);
+    return errorHandler(error);
   }
 };
 

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const config = require('../config/config.json');
+const errorHandler = require('../middlewares/error');
 const { validateCustomer } = require('../middlewares/validations');
 
 const customerService = require('../services/customerService');
@@ -18,7 +19,7 @@ const createCustomer = async (input) => {
     return response;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
@@ -27,7 +28,7 @@ const getAllCustomers = async () => {
     const customers = await customerService.getAllCustomers();
     return customers;
   } catch (error) {
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
@@ -37,7 +38,7 @@ const getCustomerById = async (id) => {
 
     return customer;
   } catch (error) {
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
@@ -53,7 +54,7 @@ const updateCustomer = async (id, input) => {
     return costumer;
   } catch (error) {
     await t.rollback();
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
@@ -63,7 +64,7 @@ const deleteCustomer = async (id) => {
 
     return customer;
   } catch (error) {
-    console.log(error);
+   return errorHandler(error);
   }
 };
 
