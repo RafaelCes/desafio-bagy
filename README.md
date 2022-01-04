@@ -32,6 +32,8 @@ ele tem como objetivo criar uma API de backend usando GraphQL e Node, e SQLite c
 
 como foi a primeira vez que trabalhei com graphQL e SQLite utilizei o express como servidor e sequelizer para fazer a comunicação com o banco de dados já que são tecnologias que estou mais acostumado
 
+foi utilizado lint para formatar o codigo, joi para validar argumentos, nodemailer para simular envio de e-mails.
+
 lista completa de dependências:
 
     "eslint-config-trybe-backend": "^1.0.4",
