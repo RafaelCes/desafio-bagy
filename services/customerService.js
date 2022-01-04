@@ -11,9 +11,9 @@ const createCustomer = async ({ fullName, email, cpf, birthDate, address }, t) =
     { transaction: t },
   );
     const response = {
-      ... newCustomer.dataValues,
-      address: { ...newAddress.dataValues},
-    }
+      ...newCustomer.dataValues,
+      address: { ...newAddress.dataValues },
+    };
   return response;
 };
 
@@ -52,7 +52,7 @@ const updateCustomer = async (id, { fullName, email, cpf, birthDate, address }, 
     { where: { customerId: id } },
     { transaction: t },
   );
-    const response = {id, fullName, email, cpf, birthDate, address };
+    const response = { id, fullName, email, cpf, birthDate, address };
   return response;
 };
 

@@ -14,6 +14,7 @@ const OrderType = new GraphQLObjectType({
   name: 'Order',
   description: 'This represents a order placed by a Customer',
   fields: () => ({
+    id: { type: GraphQLNonNull(GraphQLInt) },
     productId: { type: GraphQLNonNull(GraphQLInt) },
     createdAt: { type: GraphQLNonNull(GraphQLString) },
     installments: { type: GraphQLNonNull(GraphQLInt) },

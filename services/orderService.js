@@ -41,7 +41,7 @@ const getOrderByCustomer = async (customerId) => {
   return orders;
 };
 
-const updateOrder = async (id, { installments, status }, t) => {
+const updateOrder = async (id, status, installments, t) => {
   const order = await Order.findOne(
     { where: { id } },
   );
@@ -52,7 +52,7 @@ const updateOrder = async (id, { installments, status }, t) => {
     { where: { id } },
     { transaction: t },
   );
-    return order.dataValues;
+    return { ...order.dataValues, status, installments };
 };
 
 const deleteOrder = async (id, t) => {

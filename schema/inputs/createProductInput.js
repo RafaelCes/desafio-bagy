@@ -6,7 +6,6 @@ const {
   GraphQLInt,
 } = require('graphql');
 
-
 const CreateProductInputType = new GraphQLInputObjectType({
   name: 'CreateProductInput',
   description: 'Input payload for creating a product',

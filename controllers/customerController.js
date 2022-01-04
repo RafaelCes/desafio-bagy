@@ -9,7 +9,6 @@ const sequelize = new Sequelize(config.development);
 const createCustomer = async (input) => {
   const t = await sequelize.transaction();
   try {
-    
     validateCustomer(input);
 
     const response = await customerService.createCustomer(input, t);
@@ -60,7 +59,6 @@ const updateCustomer = async (id, input) => {
 
 const deleteCustomer = async (id) => {
   try {
-    
     const customer = await customerService.deleteCustomer(id);
 
     return customer;

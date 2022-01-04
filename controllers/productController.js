@@ -3,7 +3,6 @@ const productService = require('../services/productsService');
 
 const createProduct = async (input) => {
   try {
-
     validateProduct(input);
 
     const product = await productService.createProduct(input);
@@ -36,8 +35,6 @@ const getProductById = async (id) => {
 
 const updateProduct = async (id, input) => {
   try {
-    
-
     validateProduct(input);
 
     const product = await productService.updateProduct(id, input);
@@ -50,8 +47,6 @@ const updateProduct = async (id, input) => {
 
 const deleteProduct = async (id) => {
   try {
-    
-
     const product = await productService.deleteProduct(id);
 
     return product;
